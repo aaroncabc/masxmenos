@@ -1,0 +1,48 @@
+{% extends "basic_template.html" %}
+{% block content %}
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="{% url 'storeproductosn' id=0 store='Olimpica' order='asc' %}">Olimpica</a></li>
+            <li><a href="{% url 'storeproductosn' id=0 store='D1' order='asc' %}">D1</a></li>
+            <li><a href="">Ara</a></li>
+        </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orden<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' %}">Ascendente</a></li>
+                <li><a href="{% url 'storeproductosn' id=0 store=store order='dsc' %}">Descendente</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    {% for product in products %}
+    <div class="col-sm-4">
+          <h4>{{product.name}}</h4>
+          <p>Precio: {{product.price}}</p>
+          <p>Tienda: {{product.store}}</p>
+          <button class="btn btn-primary">Add to Cart</button>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+          <ul class="pagination">
+            {% if id == 0 %}
+                <li class="disabled "><a href="">« </a></li>
+            {% else %}
+                <li class="disabled"><a href="{% url 'storeproductosn' id=prev store=store order=order %}">« </a></li>
+            {% endif %}
+            <li class="active"><a href="{% url 'storeproductosn' id=1 store=store order=order %}">1</a></li>
+            <li><a href="{% url 'storeproductosn' id=2 store=store order=order %}">...</a></li>
+            <li><a href="{% url 'storeproductosn' id=next store=store order=order %}">»</a></li>
+          </ul>
+        </div>
+      </div>      
+{% endblock %}
