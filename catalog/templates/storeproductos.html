@@ -4,17 +4,26 @@
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="{% url 'productosn' id=0 order='asc' %}">All</a></li>
+            <li><a href="{% url 'productosn' id=0 order='asc' cat=cat %}">All</a></li>
             {% for s in stores %}
-            <li><a href="{% url 'storeproductosn' id=0 store=s.name order='asc' %}">{{s.name}}</a></li>
+            <li><a href="{% url 'storeproductosn' id=0 store=s.name order='asc' cat=cat %}">{{s.name}}</a></li>
             {% endfor %}
         </ul>
         </li>
         <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'productosn' id=0 order='asc' cat='all' %}">All</a></li>
+                {% for c in cats %}
+                <li><a href="{% url 'storeproductosn' id=0 store='D1' order='asc' cat=c.id %}">{{c.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orden<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' %}">Ascendente</a></li>
-                <li><a href="{% url 'storeproductosn' id=0 store=store order='dsc' %}">Descendente</a></li>
+                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' cat=cat %}">Ascendente</a></li>
+                <li><a href="{% url 'storeproductosn' id=0 store=store order='dsc' cat=cat %}">Descendente</a></li>
             </ul>
         </li>
     </ul>
@@ -29,6 +38,7 @@
           <h4>{{product.name}}</h4>
           <p>Precio: {{product.price}}</p>
           <p>Tienda: {{product.store}}</p>
+          <p>Categoria: {{product.cat}}</p>
           <button class="btn btn-primary">Add to Cart</button>
     </div>
     {% endfor %}
@@ -38,11 +48,11 @@
             {% if id == 0 %}
                 <li class="disabled "><a href="">« </a></li>
             {% else %}
-                <li class="disabled"><a href="{% url 'storeproductosn' id=prev store=store order=order %}">« </a></li>
+                <li class="disabled"><a href="{% url 'storeproductosn' id=prev store=store order=order cat=cat %}">« </a></li>
             {% endif %}
-            <li class="active"><a href="{% url 'storeproductosn' id=1 store=store order=order %}">1</a></li>
-            <li><a href="{% url 'storeproductosn' id=2 store=store order=order %}">...</a></li>
-            <li><a href="{% url 'storeproductosn' id=next store=store order=order %}">»</a></li>
+            <li class="active"><a href="{% url 'storeproductosn' id=1 store=store order=order cat=cat %}">1</a></li>
+            <li><a href="{% url 'storeproductosn' id=2 store=store order=order cat=cat %}">...</a></li>
+            <li><a href="{% url 'storeproductosn' id=next store=store order=order cat=cat %}">»</a></li>
           </ul>
         </div>
       </div>      
