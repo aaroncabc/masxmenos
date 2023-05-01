@@ -7,7 +7,7 @@ def login(request):
     return render(request,'login.html')
 
 def register(request):
-    return render(request,'register.html')
+    return render(request,'registro.html')
 
 def productosn(request,id,order,cat):
 
