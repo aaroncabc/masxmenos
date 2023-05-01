@@ -4,9 +4,10 @@
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="{% url 'storeproductosn' id=0 store='Olimpica' order='asc' %}">Olimpica</a></li>
-            <li><a href="{% url 'storeproductosn' id=0 store='D1' order='asc' %}">D1</a></li>
-            <li><a href="">Ara</a></li>
+            <li><a href="{% url 'productosn' id=0 order='asc' %}">All</a></li>
+            {% for s in stores %}
+            <li><a href="{% url 'storeproductosn' id=0 store=s.name order='asc' %}">{{s.name}}</a></li>
+            {% endfor %}
         </ul>
         </li>
         <li class="dropdown">

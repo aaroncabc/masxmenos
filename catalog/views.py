@@ -8,6 +8,7 @@ def productosn(request,id,order):
 
     i=id*9
     n = i+9  # number of objects to retrieve
+    tiendas = Tienda.objects.all()
     if(order=='asc'):
         products = Producto.objects.all().order_by('price')[i:n]
     else:
@@ -17,12 +18,14 @@ def productosn(request,id,order):
         'prev':id-1 if id>0 else id,
         'next':id+1,
         'order':order,
+        'stores':tiendas,
     }
     return render(request,'productos.html',context=context)
 
 
 def storeproductosn(request,id,store,order):
     s =  Tienda.objects.get(name=store)
+    tiendas = Tienda.objects.all()
     i=id*9
     n = i+9  # number of objects to retrieve
     if(order=='asc'):
@@ -34,7 +37,8 @@ def storeproductosn(request,id,store,order):
         'store':store,
         'prev':id-1 if id>0 else id,
         'next':id+1,
-        'order':order
+        'order':order,
+        'stores':tiendas,
     }
     return render(request,'storeproductos.html',context=context)
 
