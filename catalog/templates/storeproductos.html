@@ -15,7 +15,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{% url 'productosn' id=0 order='asc' cat='all' %}">All</a></li>
                 {% for c in cats %}
-                <li><a href="{% url 'storeproductosn' id=0 store='D1' order='asc' cat=c.id %}">{{c.name}}</a></li>
+                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' cat=c.id %}">{{c.name}}</a></li>
                 {% endfor %}
             </ul>
         </li>
