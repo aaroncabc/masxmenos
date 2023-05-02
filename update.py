@@ -8,16 +8,15 @@ django.setup()
 from catalog.models import Producto, Tienda, Categoria
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv('Mascotas.csv')
-
+df = pd.read_csv('Olimpica1.csv')
 for index, row in df.iterrows():
     p = row['Product Name;Price'].split(';')
     name = p[0].strip()
     price = float(p[1].replace('$','').replace('.','').strip())
     # Create a new instance of MyModel
     my_model_instance = Producto()
-    tienda = Tienda.objects.get(name='D1')
-    cat = Categoria.objects.get(name='mascotas')
+    tienda = Tienda.objects.get(name='Olimpica')
+    cat = Categoria.objects.get(name='despensa')
     # Set the values from the DataFrame to the model fields
     my_model_instance.name = name
     my_model_instance.price = price
