@@ -1,17 +1,33 @@
-{% extends "basic_template.html" %}
+<!-- listing for products  -->
+{% extends "main_template.html" %}
 {% block content %}
-    <ul class="nav navbar-nav navbar-right">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class= "row">
+
+    
+    <ul class="nav navbar-nav navbar-right row">
+        <!-- textbox for searching -->
+        <li>
+            <form class="form-group" style="margin:10px">
+              <input type="text" class="form-control" id="search"> 
+            </form>
+        </li>
+        <!-- dropdown for stores -->
         <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas </a>
         <ul class="dropdown-menu">
             <li><a href="{% url 'productosn' id=0 order='asc' cat=cat %}">All</a></li>
             {% for s in stores %}
             <li><a href="{% url 'storeproductosn' id=0 store=s.name order='asc' cat=cat %}">{{s.name}}</a></li>
             {% endfor %}
         </ul>
+        <!-- dropdown for categories -->
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias <span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias </a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'productosn' id=0 order='asc' cat='all' %}">All</a></li>
                 {% for c in cats %}
@@ -19,41 +35,75 @@
                 {% endfor %}
             </ul>
         </li>
+        <!-- dropdown for order -->
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orden<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orden</a>
             <ul class="dropdown-menu">
                 <li><a class="active" href="{% url 'productosn' id=0 order='asc' cat=cat %}">Ascendente</a></li>
                 <li><a href="{% url 'productosn' id=0  order='dsc' cat=cat %}">Descendente</a></li>
             </ul>
         </li>
     </ul>
+    </div>
+    <p>&nbsp;</p>
+    <!-- Shows all products  -->
+    <style>
+        .card-body {
+          height: 300px; /* Set a fixed height for the card bodies */
+        }
+      </style>
 
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-
-    {% for product in products %}
-    <div class="col-sm-4">
-          <h4>{{product.name}}</h4>
-          <p>Precio: {{product.price}}</p>
-          <p>Tienda: {{product.store}}</p>
-          <p>Categoria: {{product.cat}}</p>
-          <button class="btn btn-primary">Add to Cart</button>
+    {% for row in rows %}
+    <div class="row">
+        {% for product in row %}
+        <div class="col-md-3 p-4">
+            <div class="card product-card">
+                <div class="card-body d-flex flex-column">
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <h5 class="card-title"><strong>{{product.name}}</strong></h5>
+                    <p class="card-text"><strong>Precio:</strong> {{product.price}}</p>
+                    <p class="card-text"><strong>Categoria: </strong>{{product.cat}}</p>
+                    <p class="card-text"><strong>Tienda: </strong>{{product.store}}</p>
+                    <a href="#" class="btn btn-primary mt-auto">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
     {% endfor %}
+    
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!-- Pagination feature  -->
     <div class="row">
         <div class="col-md-12 text-center">
           <ul class="pagination">
             {% if id == 0 %}
-                <li class="disabled "><a href="">« </a></li>
+              <li class="page-item disabled">
+                <a class="page-link" href="#">«</a>
+              </li>
             {% else %}
-                <li class="disabled"><a href="{% url 'productosn' id=prev order=order cat=cat %}">« </a></li>
+              <li class="page-item">
+                <a class="page-link" href="{% url 'productosn' id=prev order=order cat=cat %}">«</a>
+              </li>
             {% endif %}
-            <li class="active"><a href="{% url 'productosn' id=1 order=order cat=cat %}">1</a></li>
-            <li><a href="{% url 'productosn' id=2 order=order cat=cat %}">...</a></li>
-            <li><a href="{% url 'productosn' id=next order=order cat=cat %}">»</a></li>
+            
+            <li class="page-item active">
+              <a class="page-link" href="{% url 'productosn' id=1 order=order cat=cat %}">1</a>
+            </li>
+            
+            <li class="page-item">
+              <a class="page-link" href="#">...</a>
+            </li>
+            
+            <li class="page-item">
+              <a class="page-link" href="{% url 'productosn' id=next order=order cat=cat %}">»</a>
+            </li>
           </ul>
         </div>
-      </div>      
+      </div>
+           
 {% endblock %}
