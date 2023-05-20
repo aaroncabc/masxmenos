@@ -1,7 +1,79 @@
 <!-- home/index page  -->
 {% extends "main_template.html" %}
 {% block content %}
-    <div class="col-sm-4">
-          <h1>Lorem ipsum</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masxmenos - Comparación de precios</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome CSS (opcional, para íconos) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <!-- Google Fonts - Poppins -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos personalizados */
+    h1, h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+    }
+    .rounded-card {
+      border-radius: 10px;
+    }
+  </style>
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <!-- Contenido principal -->
+  <div class="container mt-5">
+    <h1 class="display-4">Bienvenido a Masxmenos</h1>
+    <p class="lead">La plataforma donde puedes comparar precios de tiendas colombianas y gestionar tu carrito de compra.</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-4 rounded-card">
+          <div class="card-body">
+            <h2 class="card-title">¿Qué es Masxmenos?</h2>
+            <p class="card-text">Masxmenos es una plataforma en línea que te permite tener acceso a una amplia variedad de tiendas colombianas en un solo lugar. Aquí podrás comparar precios, explorar productos y gestionar tu propio carrito de compra de manera conveniente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4 rounded-card">
+          <div class="card-body">
+            <h2 class="card-title">Comparación de precios</h2>
+            <p class="card-text">En Masxmenos, puedes comparar precios de diferentes tiendas en tiempo real. Ya no tendrás que visitar varias páginas web o desplazarte por diferentes tiendas físicas para encontrar los mejores precios. Con nuestra plataforma, puedes buscar productos y ver las opciones disponibles junto con sus precios en diferentes tiendas.</p>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-4 rounded-card">
+          <div class="card-body">
+            <h2 class="card-title">Filtrado por categorías y tiendas</h2>
+            <p class="card-text">Para facilitar tu búsqueda, Masxmenos te permite filtrar productos por categorías específicas. Además, también puedes filtrar por tiendas específicas si deseas explorar las ofertas de una tienda en particular. Nuestro objetivo es brindarte una experiencia personalizada y eficiente para encontrar exactamente lo que necesitas al mejor precio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4 rounded-card">
+          <div class="card-body">
+            <h2 class="card-title">Gestiona tu carrito de compra</h2>
+            <p class="card-text">Con Masxmenos, también puedes gestionar tu propio carrito de compra. Puedes agregar productos de diferentes tiendas a tu carrito y, cuando estés listo, consultar el valor y total de tus artículos. Esto te da facilidad para gestionar tu presupuesto y medir tus gastos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
 {% endblock %}

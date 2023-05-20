@@ -7,6 +7,7 @@ urlpatterns = [
     path('productos/<int:id>/<str:store>/<str:order>/<str:cat>', views.storeproductosn, name='storeproductosn'),
     path('login',views.login,name='login'),
     path('register',views.register ,name='register'),
+    path('carrito',views.carrito,name='carrito'),
     path('productos/<int:id>/<str:store>/<str:order>/<str:search>',views.filteredproducts,name='')
 ]
 

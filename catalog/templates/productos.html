@@ -5,17 +5,49 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class= "row">
 
-    
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <div class="row">
+      <!-- Text Area -->
+      <div class="col-md-6">
+          <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <!-- Dropdowns -->
+      <div class="col-md-2">
+          <select class="form-control">
+              <option disabled selected>Tienda</option>
+              {% for s in stores %}
+              <option>{{ s }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      <div class="col-md-2">
+          <select class="form-control">
+              <option disabled selected>Categoria</option>
+              {% for c in cats %}
+              <option>{{c.name}}</option>
+              {% endfor %}
+          </select>
+      </div>
+      <div class="col-md-2">
+          <select class="form-control">
+              <option disabled selected>Orden</option>
+              <option>Ascendente</option>
+              <option>Descendente</option>
+          </select>
+      </div>
+  </div>
+
+    <!--
     <ul class="nav navbar-nav navbar-right row">
-        <!-- textbox for searching -->
+         textbox for searching 
         <li>
             <form class="form-group" style="margin:10px">
               <input type="text" class="form-control" id="search"> 
             </form>
         </li>
-        <!-- dropdown for stores -->
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas </a>
         <ul class="dropdown-menu">
@@ -24,7 +56,7 @@
             <li><a href="{% url 'storeproductosn' id=0 store=s.name order='asc' cat=cat %}">{{s.name}}</a></li>
             {% endfor %}
         </ul>
-        <!-- dropdown for categories -->
+
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias </a>
@@ -35,7 +67,7 @@
                 {% endfor %}
             </ul>
         </li>
-        <!-- dropdown for order -->
+
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orden</a>
             <ul class="dropdown-menu">
@@ -44,13 +76,16 @@
             </ul>
         </li>
     </ul>
-    </div>
+      -->
     <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
     <!-- Shows all products  -->
     <style>
         .card-body {
           height: 300px; /* Set a fixed height for the card bodies */
         }
+
       </style>
 
     {% for row in rows %}
@@ -59,14 +94,12 @@
         <div class="col-md-3 p-4">
             <div class="card product-card">
                 <div class="card-body d-flex flex-column">
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
+                    <div class="{{product.store}}"></div>
                     <h5 class="card-title"><strong>{{product.name}}</strong></h5>
                     <p class="card-text"><strong>Precio:</strong> {{product.price}}</p>
                     <p class="card-text"><strong>Categoria: </strong>{{product.cat}}</p>
                     <p class="card-text"><strong>Tienda: </strong>{{product.store}}</p>
-                    <a href="#" class="btn btn-primary mt-auto">Add to Cart</a>
+                    <a href="#" class="btn btn-primary mt-auto">Añadir al carrito</a>
                 </div>
             </div>
         </div>

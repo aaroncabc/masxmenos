@@ -3,11 +3,30 @@ from .models import Producto, Tienda,Categoria
 # Create your views here.
 def index(request):
     return render(request,'index.html')
+
 def login(request):
     return render(request,'login.html')
 
 def register(request):
+
     return render(request,'registro.html')
+
+def carrito(request):
+    products = Producto.objects.all().order_by('price')[0:3]
+    tiendas = Tienda.objects.all()
+    cats = Categoria.objects.all()
+    rows = [products[0:3]]
+    total = 0
+    for p in products:
+        total += p.price
+    context = {
+        'stores':tiendas,
+        'cats':cats,
+        'products':products,
+        'rows':rows,
+        'total':total,
+    }
+    return render(request,'carrito.html',context=context)
 
 def productosn(request,id,order,cat):
 
@@ -25,7 +44,7 @@ def productosn(request,id,order,cat):
             products = Producto.objects.all().order_by('price')[i:n]
         else:
             products = Producto.objects.all().order_by('-price')[i:n]
-    rows = [products[0:3],products[0:3],products[0:3]]
+    rows = [products[0:3],products[3:6],products[6:9]]
     context ={
         'products':products,
         'rows':rows,
@@ -55,7 +74,7 @@ def storeproductosn(request,id,store,order,cat):
             products = Producto.objects.filter(store=s).order_by('price')[i:n]
         else:
             products = Producto.objects.filter(store=s).order_by('-price')[i:n]
-    rows = [products[0:3],products[0:3],products[0:3]]
+    rows = [products[0:3],products[3:6],products[6:9]]
     context ={
         'products':products,
         'rows':rows,
