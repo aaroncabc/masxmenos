@@ -2,12 +2,13 @@
 
 
 # Universidad del Norte
-## Informe Técnico (Informe Final, Estructura de datos)
+
 
 ### Integrantes
 - Aaron Cabrales Contreras
 - Juan Pablo Guzman Restrepo
 - Juan Miguel González Pérez
+- Julian Alberto Florez Meyer
 
 Barranquilla, Colombia
 Mayo – 2023
@@ -64,18 +65,62 @@ Este proyecto consiste en el desarrollo de un aplicativo web que permite a los u
 ## Tecnologías Utilizadas
 Durante la implementación de este aplicativo web, se utilizaron las siguientes tecnologías:
 
-- **Python**: Uno de los lenguajes más utilizados a la hora de hacer Scripts. En este proyecto, se aprovechó su flexibilidad y las numerosas librerías disponibles para hacer Web Scraping, lo que nos permitió recolectar la información de las páginas de las diferentes tiendas objetivo para la comparación.
+- [**Python**](https://docs.python.org/3/reference/index.html): Uno de los lenguajes más utilizados a la hora de hacer Scripts. En este proyecto, se aprovechó su flexibilidad y las numerosas librerías disponibles para hacer Web Scraping, lo que nos permitió recolectar la información de las páginas de las diferentes tiendas objetivo para la comparación.
 
 - **Selenium**: Una herramienta que permite manejar páginas web con un headless browser. Fue utilizada para interactuar con el contenido dinámico de las tiendas en línea y extraer la información necesaria.
 
 - **Requests**: Una librería de Python que facilita la realización de peticiones HTTP. Se utilizó para obtener los datos de las páginas web de las tiendas y acceder a la información de precios y productos.
 
-- **Django**: Un framework potente para el desarrollo web con Python. Se eligió debido a su amplia documentación, herramientas integradas y una comunidad de desarrolladores activa que brinda soporte y recursos adicionales.
+- [**Django**](https://docs.djangoproject.com/): Un framework potente para el desarrollo web con Python. Se eligió debido a su amplia documentación, herramientas integradas y una comunidad de desarrolladores activa que brinda soporte y recursos adicionales.
 
 Estas tecnologías fueron seleccionadas cuidadosamente para garantizar una implementación eficiente y efectiva del aplicativo web "MasxMenos".
 
 # Resultados
 Se presentarán los resultados obtenidos a lo largo del desarrollo de la aplicación Web “MasxMenos” en lo que al apartado visual e interfaz de usuario se refiere:
 
+### Registro
 
+[![registro.jpg](https://i.postimg.cc/DzZ0Y5Q7/registro.jpg)](https://postimg.cc/PCgdCWF7)
+Al momento de iniciar la aplicación web, se requiere iniciar sesión. Por lo tanto, si el usuario no cuenta con una sesión previa en nuestra aplicación, es importante realizar el proceso de *“registro”* para crear una cuenta.
 
+### Inicio de sesión
+
+[![inicio-sesion.jpg](https://i.postimg.cc/nhMfyWWS/inicio-sesion.jpg)](https://postimg.cc/75vR7KwS)
+Una vez creada la cuenta, es posible acceder a *“iniciar sesión”* utilizando los datos proporcionados durante el proceso de registro.
+
+### Inicio
+
+[![menu.jpg](https://i.postimg.cc/xdHhYV35/menu.jpg)](https://postimg.cc/mcL8Nqq1)
+La pestaña de *“inicio”* es la sección principal de la página web, donde los usuarios pueden familiarizarse con "MasxMenos" y obtener información completa sobre el funcionamiento de la aplicación y sus beneficios.
+
+### Listado de productos
+
+[![Listado-de-productos.jpg](https://i.postimg.cc/QxwfMnty/Listado-de-productos.jpg)](https://postimg.cc/fJ7c2CYc)
+La sección de *“listado de productos”* brinda al usuario la posibilidad de acceder a una amplia variedad de productos disponibles en múltiples tiendas de cadena de forma simultánea. Esta pestaña ofrece opciones de filtrado por tipo de producto, tienda e incluso orden de precios, con el objetivo de facilitar la búsqueda y permitir al usuario añadir los productos deseados a un carrito.
+
+### Carrito
+
+[![carrito.jpg](https://i.postimg.cc/3rbBLbgx/carrito.jpg)](https://postimg.cc/JtZZ0x6f)
+Para concluir, el usuario puede acceder a la pestaña *"Carrito"*, la cual le permite visualizar los productos previamente agregados y conocer el precio individual de cada uno, así como el precio total de su compra. En todo momento se mostrará la información correspondiente a la tienda a la que pertenecen los productos y el tipo de producto al que corresponden.
+
+# Conclusiones
+
+En vista de los resultados obtenidos, la aplicación web "MasxMenos" logra abordar la problemática planteada de manera efectiva. Esta aplicación cuenta con una amplia selección de tiendas de cadena, lo que le permite comparar una variedad extensa de productos. De esta forma, brinda a los usuarios la seguridad de obtener precios competitivos en relación con la competencia. "MasxMenos" se posiciona como una propuesta destacada en el sector de las aplicaciones, al ofrecer una solución a una pregunta común: ¿Dónde puedo encontrar un determinado producto al mejor precio? Esto le augura un futuro prometedor en comparación con otras aplicaciones similares.
+
+Sin embargo, es importante mencionar que "MasxMenos" presenta ciertas limitaciones. Por ejemplo, no considera la ubicación geográfica del usuario ni la disponibilidad de productos en las tiendas cercanas, lo que impide conocer si el producto deseado está disponible en la tienda más cercana. Además, la aplicación no permite realizar compras directamente. Estas funcionalidades que actualmente no están disponibles se consideran para futuras actualizaciones, incluyendo la implementación de aplicaciones móviles a través de las tiendas virtuales [App Store](https://www.apple.com/app-store/) y [Play Store](https://play.google.com/store/games), respectivamente.
+
+# Referencias bibliográficas
+
+Sanchez. L.A(2019). El impacto de los establecimientos Hard Discount o tiendas de
+descuento en el sector comercial de Colombia.Universidad de La Salle, Bogotá. Recuperado de: [https://ciencia.lasalle.edu.co/cgi/viewcontent.cgi?article=2592&context=administracion_de_empresas](https://ciencia.lasalle.edu.co/cgi/viewcontent.cgi?article=2592&context=administracion_de_empresas)
+
+Python Software Foundation. (2021). The Python Language Reference. Recuperado de [https://docs.python.org/3/reference/index.html](https://docs.python.org/3/reference/index.html)
+
+Django Software Foundation. (2021). Django documentation. Recuperado de [https://docs.djangoproject.com/](https://docs.djangoproject.com/)
+
+McKinney, W., & Pandas Development Team. (2021). Pandas: Powerful data analysis toolkit. Recuperado de [https://pandas.pydata.org/docs/](https://pandas.pydata.org/docs/)
+
+Crummy, L. (n.d.). BeautifulSoup Documentation. Recuperado de 
+[https://www.crummy.com/software/BeautifulSoup/bs4/doc/](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+Gracias por su interés en *"MasxMenos"*
