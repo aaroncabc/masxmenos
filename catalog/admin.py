@@ -42,4 +42,6 @@ class CarritoAdmin(admin.ModelAdmin):
 
 admin.site.register(Categoria)
 
-admin.site.register(Usuario)
+@admin.register(Usuario)
+class UsuarioAdmin(admin.ModelAdmin):
+    list_display = ('username','mail')

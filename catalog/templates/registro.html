@@ -21,10 +21,20 @@
               <div class="form-group">
                   <label for="username" style="color: white;">Usuario:</label>
                   <input type="text" id="username" name="username" class="form-control" required>
+                  {% if form.username.errors %}
+                      {% for error in form.username.errors %}
+                          <span class="text-danger">{{ error }}</span>
+                      {% endfor %}
+                  {% endif %}
               </div>
               <div class="form-group">
                   <label for="email" style="color: white;">Correo electrónico:</label>
                   <input type="email" id="email" name="email" class="form-control" required>
+                  {% if form.email.errors %}
+                      {% for error in form.email.errors %}
+                          <span class="text-danger">{{ error }}</span>
+                      {% endfor %}
+                  {% endif %}
               </div>
               <div class="form-group">
                   <label for="password" style="color: white;">Contraseña:</label>
@@ -33,6 +43,11 @@
               <div class="form-group">
                   <label for="confirm_password" style="color: white;">Confirmar contraseña:</label>
                   <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                  {% if form.confirm_password.errors %}
+                      {% for error in form.confirm_password.errors %}
+                          <span class="text-danger">{{ error }}</span>
+                      {% endfor %}
+                  {% endif %}
               </div>
               <button type="submit" class="btn btn-primary">Registrarse</button>
           </form>

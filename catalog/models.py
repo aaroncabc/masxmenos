@@ -29,7 +29,7 @@ class Carrito(models.Model):
 
     def display_items(self):
         return ', '.join(items.name for items in self.items.all()[:3])
-    display_items.short_description = 'Poducto'
+    display_items.short_description = 'Poductos'
 
 
 class Usuario(models.Model):
@@ -38,4 +38,4 @@ class Usuario(models.Model):
     mail = models.EmailField()
     password = models.CharField(max_length=100)
     def __str__(self) -> str:
-        return f'{self.name},{self.mail}'
+        return f'{self.username},{self.mail}'
