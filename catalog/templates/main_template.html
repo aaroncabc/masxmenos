@@ -3,7 +3,12 @@
 <head>
     <title>MASXMENOS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
+        <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         .product-card {
             transition: transform 0.2s;
@@ -40,12 +45,21 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'productosn' id=0 order='asc' cat='all' %}">Productos</a>
             </li>
+            {% if user_id is not None %}
             <li class="nav-item">
-                <a class="nav-link" href="#">Carrito</a>
+                <a class="nav-link" href="{% url 'carrito' %}">Carrito</a>
             </li>
+            {% endif %}
         </ul>
     </div>
     <div class="text-right">
+        {% if user_id is not None %}
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}"><span class="glyphicon glyphicon-user"></span>{{ user_id }}</a>
+            </li>
+        </ul>
+        {% else %}
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span>Registrarse</a>
@@ -54,6 +68,8 @@
                 <a class="nav-link" href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span>Iniciar sesion</a>
             </li>
         </ul>
+        {% endif %}
+        
     </div>
 </nav>
 
