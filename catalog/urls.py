@@ -11,6 +11,7 @@ urlpatterns = [
     path('productos/<int:id>/<str:store>/<str:order>/<str:search>',views.filteredproducts,name=''),
     path('logout',views.logout,name='logout'),
     path('add/<str:product>',views.addProductToCart,name='add'),
-    path('remoce/<int:product>',views.removeProductFromCart,name='remove')
+    path('remoce/<int:product>',views.removeProductFromCart,name='remove'),
+    path('filtercart/<str:parameter>/<str:value>',views.filtercart,name='filtercart'),
 ]
 

@@ -11,30 +11,35 @@
     <div class="row">
       <!-- Dropdowns -->
       <div class="col-md-2">
-          <select class="form-control">
+          <select class="form-control"  onchange="changeStore(this.value)">
               <option disabled selected>Tienda</option>
+              <option value="all">Todas</option>
               {% for s in stores %}
-              <option>{{ s }}</option>
+              <option value="{{s.name}}">{{ s }}</option>
               {% endfor %}
           </select>
       </div>
       <div class="col-md-2">
-          <select class="form-control">
+          <select class="form-control"  onchange="changeCategory(this.value)">
               <option disabled selected>Categoria</option>
+              <option value="all">Todas</option>
               {% for c in cats %}
-              <option>{{c.name}}</option>
+              <option value="{{c.name}}">{{c.name}}</option>
               {% endfor %}
-          </select>
-      </div>
-      <div class="col-md-2">
-          <select class="form-control">
-              <option disabled selected>Orden</option>
-              <option>Ascendente</option>
-              <option>Descendente</option>
           </select>
       </div>
   </div>
+  <script>
+    function changeCategory(value){
+      var url = "{% url 'filtercart' parameter='cat' value='VALUE' %}".replace('VALUE', value);
+      window.location.href = url;
+    }
 
+    function changeStore(value){
+        var url = "{% url 'filtercart' parameter='store' value='VALUE' %}".replace('VALUE', value);
+      window.location.href = url;
+    }
+</script>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 

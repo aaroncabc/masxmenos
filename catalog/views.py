@@ -65,6 +65,7 @@ def removeProductFromCart(request,product):
     # Redirect to the index page
     return redirect('carrito')
 
+
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -114,6 +115,32 @@ def carrito(request):
         'user_id':user_id,
     }
     return render(request,'carrito.html',context=context)
+
+def filtercart(request,parameter,value):
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
+    if value == 'all':
+        products = Carrito.objects.get(usuario__username=user_id).items.all()
+    else:
+        if parameter == 'cat':
+            products = Carrito.objects.get(usuario__username=user_id).items.all().filter(cat__name=value)
+        else:
+            products = Carrito.objects.get(usuario__username=user_id).items.all().filter(store__name=value)
+    tiendas = Tienda.objects.all()
+    cats = Categoria.objects.all()
+    rows = [products[i:i + 3] for i in range(0, len(products), 3)]
+    total = 0
+    for p in products:
+        total += p.price
+    context = {
+        'stores':tiendas,
+        'cats':cats,
+        'products':products,
+        'rows':rows,
+        'total':total,
+        'user_id':user_id,
+    }
+    return render(request,'carrito.html',context=context)
+
 
 def productosn(request,id,order,cat):
     user_id = request.session['user_id'] if 'user_id' in request.session else None
