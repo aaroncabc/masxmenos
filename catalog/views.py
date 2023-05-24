@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from .forms import RegisterForm
 from .models import Producto, Tienda,Categoria,Usuario,Carrito
 # Create your views here.
@@ -33,6 +34,37 @@ def logout(request):
     # Redirect to the index page
     return redirect('index')
 
+def addProductToCart(request, product):
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
+    if user_id is None:
+        return redirect('login')
+    else:
+        product_id = product
+        # Get the user object
+        user = Usuario.objects.get(username=user_id)
+        # Get the product object
+        product = Producto.objects.get(id=product_id)
+        # Get the cart object
+        cart = Carrito.objects.get(usuario=user)
+        # Add the product to the cart
+        cart.items.add(product)
+        # Redirect to the current URL
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def removeProductFromCart(request,product):
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
+    product_id = product
+    # Get the user object
+    user = Usuario.objects.get(username=user_id)
+    # Get the product object
+    product = Producto.objects.get(id=product_id)
+    # Get the cart object
+    cart = Carrito.objects.get(usuario__username=user_id)
+    # Add the product to the cart
+    cart.items.remove(product)
+    # Redirect to the index page
+    return redirect('carrito')
+
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -65,7 +97,7 @@ def register(request):
     return render(request, 'registro.html', {'form': form})
 
 def carrito(request):
-    user_id = request.session['user_id']
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
     products = Carrito.objects.get(usuario__username=user_id).items.all()
     tiendas = Tienda.objects.all()
     cats = Categoria.objects.all()
@@ -84,7 +116,7 @@ def carrito(request):
     return render(request,'carrito.html',context=context)
 
 def productosn(request,id,order,cat):
-    user_id = request.session['user_id']
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
     i=id*9
     n = i+9  # number of objects to retrieve
     tiendas = Tienda.objects.all()
@@ -115,7 +147,7 @@ def productosn(request,id,order,cat):
 
 
 def storeproductosn(request,id,store,order,cat):
-    user_id = request.session['user_id']
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
     s =  Tienda.objects.get(name=store)
     tiendas = Tienda.objects.all()
     cats = Categoria.objects.all()
@@ -147,7 +179,7 @@ def storeproductosn(request,id,store,order,cat):
     return render(request,'storeproductos.html',context=context)
 
 def filteredproducts(request,id,store,order,search):
-    user_id = request.session['user_id']
+    user_id = request.session['user_id'] if 'user_id' in request.session else None
     s =  Tienda.objects.get(name=store)
     tiendas = Tienda.objects.all()
     cats = Categoria.objects.all()

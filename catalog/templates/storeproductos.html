@@ -17,67 +17,50 @@
       </div>
       <!-- Dropdowns -->
       <div class="col-md-2">
-          <select class="form-control">
+          <select class="form-control" onchange="changeStore(this.value)">
               <option disabled selected>Tienda</option>
+              <option value="all">Todas</option>
               {% for s in stores %}
-              <option>{{ s }}</option>
+              <option value="{{ s.name }}">{{ s }}</option>
               {% endfor %}
           </select>
       </div>
       <div class="col-md-2">
-          <select class="form-control">
+          <select class="form-control" onchange="changeCategory(this.value)">
               <option disabled selected>Categoria</option>
+              <option value="all">Todas</option>
               {% for c in cats %}
-              <option>{{c.name}}</option>
+              <option value="{{ c.id }}">{{c.name}}</option>
               {% endfor %}
           </select>
       </div>
       <div class="col-md-2">
-          <select class="form-control">
+          <select class="form-control" onchange="changeOrder(this.value)">
               <option disabled selected>Orden</option>
-              <option>Ascendente</option>
-              <option>Descendente</option>
+              <option value = 'asc'>Ascendente</option>
+              <option value = 'dsc'>Descendente</option>
           </select>
       </div>
   </div>
 
-<!--
-<div class="row">
-    <ul class="nav navbar-nav navbar-right row">
-         textbox for searching 
-        <li>
-          <form class="form-group" style="margin:10px">
-            <input type="text" class="form-control" id="search"> 
-          </form>
-        </li>
-        <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tiendas </a>
-        <ul class="dropdown-menu">
-            <li><a href="{% url 'productosn' id=0 order='asc' cat=cat %}">All</a></li>
-            {% for s in stores %}
-            <li><a href="{% url 'storeproductosn' id=0 store=s.name order='asc' cat=cat %}">{{s.name}}</a></li>
-            {% endfor %}
-        </ul>
-        </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias </a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' cat='all' %}">All</a></li>
-                {% for c in cats %}
-                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' cat=c.id %}">{{c.name}}</a></li>
-                {% endfor %}
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orden</a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'storeproductosn' id=0 store=store order='asc' cat=cat %}">Ascendente</a></li>
-                <li><a href="{% url 'storeproductosn' id=0 store=store order='dsc' cat=cat %}">Descendente</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
--->
+  <script>
+    function changeOrder(value){
+        var url = "{% url 'storeproductosn' id=0 store=store order='VALUE' cat=cat %}".replace('VALUE', value);
+        window.location.href = url;
+    }
+    function changeCategory(value){
+        var url = "{% url 'storeproductosn' id=0 store=store order='asc' cat='VALUE' %}".replace('VALUE', value);
+        window.location.href = url;
+    }
+    function changeStore(value){
+        if (value === 'all'){
+            var url = "{% url 'productosn' id=0 order='asc' cat=cat %}"
+        }else{
+            var url =  "{% url 'storeproductosn' id=0 store='VALUE' order='asc' cat=cat %}".replace('VALUE', value);
+        }
+        window.location.href = url;
+    }
+  </script>
     <p>&nbsp;</p>
 
     <!-- Shows all products  -->
@@ -99,7 +82,7 @@
                     <p class="card-text"><strong>Precio:</strong> {{product.price}}</p>
                     <p class="card-text"><strong>Categoria: </strong>{{product.cat}}</p>
                     <p class="card-text"><strong>Tienda: </strong>{{product.store}}</p>
-                    <a href="#" class="btn btn-primary mt-auto">Añadir al carrito</a>
+                    <a href="{% url 'add' product=product.id %}" class="btn btn-primary mt-auto">Añadir al carrito</a>
                 </div>
             </div>
         </div>
@@ -119,7 +102,7 @@
             {% else %}
                 <li class="disabled"><a href="{% url 'storeproductosn' id=prev store=store order=order cat=cat %}">« </a></li>
             {% endif %}
-            <li class="active"><a href="{% url 'storeproductosn' id=1 store=store order=order cat=cat %}">1</a></li>
+            <li><a href="{% url 'storeproductosn' id=1 store=store order=order cat=cat %}">1</a></li>
             <li><a href="{% url 'storeproductosn' id=2 store=store order=order cat=cat %}">...</a></li>
             <li><a href="{% url 'storeproductosn' id=next store=store order=order cat=cat %}">»</a></li>
           </ul>

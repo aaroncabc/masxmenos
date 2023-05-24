@@ -57,7 +57,7 @@
                 <p class="card-text"><strong>Precio:</strong> {{product.price}}</p>
                 <p class="card-text"><strong>Categoria: </strong>{{product.cat}}</p>
                 <p class="card-text"><strong>Tienda: </strong>{{product.store}}</p>
-                <a href="#" class="btn btn-primary mt-auto">Remove from Cart</a>
+                <a href="{% url 'remove' product=product.id %}" class="btn btn-primary mt-auto">Remove from Cart</a>
             </div>
         </div>
     </div>
