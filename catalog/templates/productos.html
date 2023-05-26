@@ -11,7 +11,7 @@
     <div class="row">
       <!-- Text Area -->
       <div class="col-md-6">
-          <textarea class="form-control" rows="3"></textarea>
+          <textarea id="search-textarea" class="form-control" rows="3"></textarea>
       </div>
       <!-- Dropdowns -->
       <div class="col-md-2">
@@ -66,6 +66,21 @@
       }
       window.location.href = url;
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchTextarea = document.getElementById('search-textarea');
+        
+        searchTextarea.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) { // Enter key
+                event.preventDefault();
+                var searchValue = searchTextarea.value.trim();
+                if (searchValue !== '') {
+                    var url = "{% url 'filteredproducts' id=0 order=order search='VALUE' %}".replace('VALUE', encodeURIComponent(searchValue));
+                    window.location.href = url;
+                }
+            }
+        });
+    });
 </script>
 
     <p>&nbsp;</p>
