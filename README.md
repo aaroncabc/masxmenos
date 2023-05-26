@@ -123,4 +123,8 @@ McKinney, W., & Pandas Development Team. (2021). Pandas: Powerful data analysis 
 Crummy, L. (n.d.). BeautifulSoup Documentation. Recuperado de 
 [https://www.crummy.com/software/BeautifulSoup/bs4/doc/](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
-Gracias por su interés en *"MasxMenos"*
+# Manual de usuario
+
+[Manual de usuario](Manual de usuario(https://docs.google.com/document/d/e/2PACX-1vRihFWd4BQQ_gstdnB6ujHiAkcDrzN003vG2dtAtZFoh_gDK4kle3YcYOeG59B5ZoyFUbKqgvAdNhE_/pub)
+
+## Gracias por su interés en *"MasxMenos"*
