@@ -205,20 +205,20 @@ def storeproductosn(request,id,store,order,cat):
     }
     return render(request,'storeproductos.html',context=context)
 
-def filteredproducts(request,id,store,order,search):
+def filteredproducts(request,id,order,search):
     user_id = request.session['user_id'] if 'user_id' in request.session else None
-    s =  Tienda.objects.get(name=store)
     tiendas = Tienda.objects.all()
     cats = Categoria.objects.all()
     i=id*9
     n = i+9  # number of objects to retrieve
     if(order=='asc'):
-            products = Producto.objects.filter(store=s).order_by('price')[i:n]
+            products = Producto.objects.filter(name__icontains=search).order_by('price')[i:n]
     else:
-        products = Producto.objects.filter(store=s).order_by('-price')[i:n]
+        products = Producto.objects.filter(name__icontains=search).order_by('-price')[i:n]
+    rows = [products[0:3],products[3:6],products[6:9]]
     context ={
         'products':products,
-        'store':store,
+        'rows':rows,
         'prev':id-1 if id>0 else id,
         'next':id+1,
         'order':order,
@@ -227,6 +227,6 @@ def filteredproducts(request,id,store,order,search):
         'search':search,
         'user_id':user_id,
     }
-    return render(request,'storeproductos.html',context=context)
+    return render(request,'filteredproductos.html',context=context)
 
 
